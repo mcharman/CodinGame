@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+
+using namespace std;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+int main()
+{
+    int L;
+    cin >> L; cin.ignore();
+    int H;
+    cin >> H; cin.ignore();
+    string T;
+    getline(cin, T);
+    string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ?";
+    vector<string> alpha_ascii;
+    
+    for (int i = 0; i < H; i++) {
+        string ROW;
+        getline(cin, ROW);
+        alpha_ascii.push_back(ROW);
+    }
+
+    // Write an action using cout. DON'T FORGET THE "<< endl"
+    // To debug: cerr << "Debug messages..." << endl;
+    
+    vector<string> output(H, "");
+    for(int i = 0; i < T.length(); i++)
+    {
+        char s = toupper(T[i]);
+        if((s < 'A') || (s > 'Z'))
+            s = '?';
+        int index = alpha.find(s);
+        for(int j = 0; j < H; j++)
+        {
+            string str = alpha_ascii[j].substr(index * L, L);
+            output[j] += str;
+        }
+    }
+    
+    for(int i = 0; i < H; i++)
+    {
+        cout << output[i] << endl;
+    }
+
+
+}
